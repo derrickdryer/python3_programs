@@ -1,30 +1,3 @@
-"""
-Write a program to allow the user to play a version of football. The details of our
-football game are as follows:
-1. The user plays against the computer
-2. The user gets the ball and gets a full possession to try to score
-3. The game begins with the ball on the 20 yard line, 80 yards to score
-4. The menu should allow the user to run, pass, kick, or quit
-5. There are two types of ‘run’ plays, conservative and risky
-6. There are two types of ‘pass’ plays, short and long
-7. There is one type of ‘kick’ play, the user can try for a field goal
-8. After the player’s possession, the computer’s score is randomly determined to
-be either 0, 3, or 7
-9. A touchdown is 7 points and a field goal is 3
-10. Each team, user and computer, should get two full possessions, and then the
-game ends
-
-You are to come up with a good balance to make the game not too hard, not too easy.
-Here are a few guidelines, but you are to experiment and choose exact percentages:
-1. A risky run play should have a chance for longer runs, but also a chance to
-lose yards, a conservative run play should never lose yards, but should never
-get very long runs, maybe always 0 through 2 yards for example
-2. A short pass play should have a higher chance than a long pass play, but for
-less yards if successful
-3. A field goal should be only possible if under 50 yards, use a random number 1
-through 100 if > two times the length to mean the field goal is good
-"""
-
 # Imports
 import random
 import time
