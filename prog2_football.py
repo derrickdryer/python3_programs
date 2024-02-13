@@ -20,18 +20,20 @@ difficulty_conservative = 15
 difficulty_risky = 65
 
 # Welcome Message, displays once on start
-print('''Welcome to the football game!
-      You are the player and the computer is the CPU.
-      You will get the ball first and have a full possession to try to score.
-      The game begins with the ball on the 20 yard line, 80 yards to score.
-      The menu will allow you to run, pass, kick, or quit.
-      There are two types of "run" plays, conservative and risky.
-      There are two types of "pass" plays, short and long.
-      There is one type of "kick" play, the user can try for a field goal.
-      After the player’s possession, the computer’s score is randomly determined to be either 0, 3, or 7.
-      A touchdown is 7 points and a field goal is 3.
-      Each team, user and computer, should get two full possessions, and then the game ends.
-    Good luck!''')
+print('''
+    WELCOME TO THE FOOTBALL GAME!
+    ============================
+    You will be playing against the CPU.
+    You and the CPU each get two turns.
+    The player can use run, pass and kick plays.
+    Each play besides kick has risky and conservative types.
+    Kick plays can only be done within 50 yards.
+    The farther from the endzone the harder a kick is.
+    
+    Touchdowns = 7 Points
+    Fieldgoals = 3 Points
+    
+    GOOD LUCK!!!\n''')
 continue_game = input("\nPress enter to start.\n")
 
 # Main Menu
@@ -212,15 +214,15 @@ def player_turn():
         print(f"> Current yards: {current_yard}")
         print(f"> Yards to first down: {max(0, yards_to_first_down)}")
         print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-    if attempts == 4 and yards_gained_in_turn < 10:
-        print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-        print(">>> Turnover on downs. It's the computer's turn.")
-        print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-    if yards_gained_in_turn >= 10 and check_for_touchdown() == False and current_yard < 100:
-        print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-        print(">>> First down! It's still your turn.")
-        print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-        player_turn()
+        if attempts == 4 and yards_gained_in_turn < 10:
+            print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+            print(">>> Turnover on downs. It's the computer's turn.")
+            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+        elif yards_gained_in_turn >= 10 and check_for_touchdown() == False and current_yard < 100:
+            print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+            print(">>> First down! It's still your turn.")
+            print("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+            player_turn()
 
 # Display current yard line
 def current_yard_display(current_yard):
