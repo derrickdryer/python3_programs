@@ -1,6 +1,7 @@
 import random
 
 playerChips = 100
+wager = 0
 
 
 def generate5Numbers():
@@ -17,8 +18,8 @@ def generate7Numbers():
 
 def pick1Number():
     lottery = generate5Numbers()
+    global wager
     try:
-        wager = int(input("How much would you like to wager? "))
         playerGuess = int(input("Pick a number between 0 and 9: "))
 
         if playerGuess in lottery:
@@ -34,8 +35,8 @@ def pick1Number():
 
 def pick2Numbers():
     lottery = generate5Numbers()
+    global wager
     try:
-        wager = int(input("How much would you like to wager? "))
         playerGuess = []
         print("Pick 2 numbers between 0 and 9: ")
         while len(playerGuess) < 2:
@@ -46,10 +47,10 @@ def pick2Numbers():
                 print("You already picked that number.\n")
         if playerGuess[0] in lottery and playerGuess[1] in lottery:
             print("You guessed correctly! You win 2 times your wager!\n")
-            return int(wager * 2)
+            return wager * 2
         else:
             print("You guessed incorrectly. You lose your wager.\n")
-            return int(-wager)
+            return -wager
     except ValueError:
         print("Please enter a valid number.\n")
         pick2Numbers()
@@ -57,8 +58,8 @@ def pick2Numbers():
 
 def luckySeven():
     lottery = generate7Numbers()
+    global wager
     try:
-        wager = int(input("How much would you like to wager? "))
         playerGuess = []
         print("Pick 7 numbers between 0 and 9: ")
         while len(playerGuess) < 7:
@@ -73,13 +74,13 @@ def luckySeven():
                 correct += 1
         if correct == 7:
             print("You guessed all 7 numbers correctly! You win 10 times your wager!\n")
-            return int(wager * 10)
+            return wager * 10
         elif correct == 6:
             print("You guessed 6 numbers correctly! You win 5 times your wager!\n")
-            return int(wager * 5)
+            return wager * 5
         else:
             print("You guessed", correct, "numbers correctly. You lose your wager.\n")
-            return int(-wager)
+            return -wager
     except ValueError:
         print("Please enter a valid number.\n")
         luckySeven()
@@ -93,6 +94,20 @@ def banner():
     print("Welcome to the lottery game! You have", playerChips, "chips.\n")
 
 
+def wagerHandler():
+    global wager
+    while True:
+        try:
+            wager = int(input("How much would you like to wager? (1-10) "))
+            if 1 <= wager <= 10:
+                break
+            else:
+                print("Wager must be between 1 & 10\n")
+        except ValueError:
+            print("Please enter a valid number.\n")
+            wagerHandler()
+
+
 def menu():
     print("1. Pick 1 number")
     print("2. Pick 2 numbers")
@@ -102,8 +117,10 @@ def menu():
 
 def main():
     global playerChips
+    global wager
     banner()
     while playerChips > 0:
+        wagerHandler()
         menu()
         try:
             choice = int(input("What would you like to do? "))
