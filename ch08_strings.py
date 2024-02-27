@@ -20,6 +20,9 @@ def extractDate(userDate):
     month = userDate[0:2]
     day = userDate[3:5]
     year = userDate[6:10]
+    if userDate[2] == "/":
+        day = userDate[3]
+        year = userDate[5:10]
     return month, day, year
 
 
