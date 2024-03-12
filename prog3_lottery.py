@@ -1,21 +1,25 @@
 import random
 
+# GLobal varibles
 playerChips = 100
 wager = 0
 
 
+# Generates list of 5 numbers
 def generate5Numbers():
     numbers = []
     numbers = random.sample(range(10), 5)
     return numbers
 
 
+# Generates list of 7 numbers
 def generate7Numbers():
     numbers = []
     numbers = random.sample(range(10), 7)
     return numbers
 
 
+# Pick 1 numbr game
 def pick1Number():
     lottery = generate5Numbers()
     global wager
@@ -33,6 +37,7 @@ def pick1Number():
         pick1Number()
 
 
+# Pick 2 numbers game
 def pick2Numbers():
     lottery = generate5Numbers()
     global wager
@@ -56,6 +61,7 @@ def pick2Numbers():
         pick2Numbers()
 
 
+# Pick 7 game, jackpot game
 def luckySeven():
     lottery = generate7Numbers()
     global wager
@@ -86,14 +92,17 @@ def luckySeven():
         luckySeven()
 
 
+# Will display current chips player has
 def currentChips():
     print("You have", playerChips, "chips.\n")
 
 
+# Will display the banner
 def banner():
     print("Welcome to the lottery game! You have", playerChips, "chips.\n")
 
 
+# Will handle the wager
 def wagerHandler():
     global wager
     while True:
@@ -108,6 +117,7 @@ def wagerHandler():
             wagerHandler()
 
 
+# Will display the menu
 def menu():
     print("1. Pick 1 number")
     print("2. Pick 2 numbers")
@@ -115,12 +125,15 @@ def menu():
     print("4. Quit")
 
 
+# Main function
 def main():
     global playerChips
     global wager
     banner()
     while playerChips > 0:
+        # Asks player for wager at start
         wagerHandler()
+        # Ask player what game they want to play
         menu()
         try:
             choice = int(input("What would you like to do? "))
